@@ -1,0 +1,1 @@
+while true ; do nc -l 8080 < /www/index.html ; done
