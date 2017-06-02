@@ -1,3 +1,6 @@
+*.swp
+.env
+
 # Logs
 logs
 *.log
