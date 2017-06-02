@@ -1,31 +1,26 @@
 # vagrant_docker
 Docker in a Vagrant box which will automaticly run the image on startup and create a webserver.
 
+Do first:
+create .env file
+
 Run commands:
 ```
-vagrant plugin install vagrant-docker-compose
+docker-compose up
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan optimize
+docker-compose exec app php artisan migrate --seed
 ```
 
-```
-vagrant init
-```
 
-Change or add the next lines in the Vagrant file:
-```
-Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
- 
-  config.vm.provision :docker
-  config.vm.provision :docker_compose
-end
-```
-
-Save and run
+Vagrant run
 ```
 vagrant up 
 vagrant ssh
-docker run --name webserver -v /www:/usr/share/nginx:ro -d -p 8080:80 nginx
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan optimize
+docker-compose exec app php artisan migrate --seed
 ```
 
 Go with your browser to:
-http://192.168.33.10:8080/
+http://192.168.50.666/
